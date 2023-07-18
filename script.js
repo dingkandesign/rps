@@ -13,7 +13,6 @@ function getComputerChoice() {
 
 function assignPlayerChoice(e) {
 	playerChoice = this.innerText.toUpperCase();
-	console.log(playerChoice);
 	playRound();
 }
 
@@ -55,6 +54,7 @@ function playRound() {
 
 }
 
+// listen for player selection via buttons
 const buttons = document.querySelectorAll('button');
 
 buttons.forEach((button) => { 
@@ -62,3 +62,12 @@ buttons.forEach((button) => {
 
 });
 
+let computerScore = document.querySelector('.computer');
+let playerScore = document.querySelector('.player');
+let tieScore = document.querySelector('.tie');
+
+function updateScore() {
+	computerScore.innerText = computerWins;
+	playerScore.innerText = playerWins;
+	tieScore.innerText = ties;
+}

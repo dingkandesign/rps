@@ -1,0 +1,9 @@
+#scoreTracker {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.scorebox {
+  flex: 1;
+}
