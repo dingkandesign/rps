@@ -26,6 +26,9 @@ function playRound() {
 			computerWins += 1;
 			let pComp = document.querySelector(".computer");
 			pComp.classList.add('winner');
+			if (computerScore >= 5) {
+				alert('computer wins the match!');
+			}
 			break;
 		case (playerChoice === 'ROCK' && computerChoice === 'SCISSORS'):
 		case (playerChoice === 'PAPER' && computerChoice === 'ROCK'):
@@ -33,6 +36,9 @@ function playRound() {
 			playerWins += 1;
 			let pPlayer = document.querySelector(".player");
 			pPlayer.classList.add('winner');
+			if (playerWins >= 5) {
+				alert('player wins the match!');
+			}
 			break;
 	}
 
@@ -79,4 +85,3 @@ ps.forEach(p => p.addEventListener("transitionend", removeTransition));
 
 const pSelection = document.querySelector('.playerSelection');
 const cSelection = document.querySelector('.computerSelection');
-
