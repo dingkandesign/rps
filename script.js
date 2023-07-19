@@ -1,11 +1,3 @@
-//create array of acceptable choices
-const choiceArray = ['ROCK', 'PAPER', 'SCISSORS'];
-//initialize global variables
-let computerWins = 0;
-let playerWins = 0;
-let ties = 0;
-let playerChoice = 0;
-
 //generate computer choice; make it random choice of three; uppercase for comparison
 function getComputerChoice() {
   return choiceArray[Math.floor(Math.random()*choiceArray.length)].toUpperCase();
@@ -14,48 +6,64 @@ function getComputerChoice() {
 function assignPlayerChoice(e) {
 	playerChoice = this.innerText.toUpperCase();
 	playRound();
+	updateScore();
+	updateSelectionVisualization(playerChoice, computerChoice);
 }
 
 function playRound() {
-	let computerChoice = getComputerChoice();
-	//prompt player choice
-/*	let playerChoice = prompt('Rock, paper, scissors, shoot!').toUpperCase();
-	//make sure player chose an acceptable choice
-	let playerApprovedChoice = choiceArray.some(choice => playerChoice.includes(choice));
-	//prompt player if their choice is NOT acceptable
-	while (!playerApprovedChoice) {
-		playerChoice = prompt('Please enter a valid choice: rock, paper, or scissors').toUpperCase();
-		playerApprovedChoice = choiceArray.some(choice => playerChoice.includes(choice));
-	}
-	*/
+	computerChoice = getComputerChoice();
 
-	//check result, notify round result, update win counters
+	//check result, update win counters, h2 win highlight
 	switch (true) {
 		case (playerChoice === computerChoice):
-			alert('Tie');
 			ties += 1;
-			return 'Tie';
+			let pTie = document.querySelector(".tie");
+			pTie.classList.add('winner');
 			break;
 		case (playerChoice === 'ROCK' && computerChoice === 'PAPER'):
 		case (playerChoice === 'PAPER' && computerChoice === 'SCISSORS'):
 		case (playerChoice === 'SCISSORS' && computerChoice === 'ROCK'):
-			alert ('Computer wins');
 			computerWins += 1;
-			return 'Computer Wins';
+			let pComp = document.querySelector(".computer");
+			pComp.classList.add('winner');
 			break;
 		case (playerChoice === 'ROCK' && computerChoice === 'SCISSORS'):
 		case (playerChoice === 'PAPER' && computerChoice === 'ROCK'):
 		case (playerChoice === 'SCISSORS' && computerChoice === 'PAPER'):
-			alert ('Player wins');
 			playerWins += 1;
-			return 'Player wins';
+			let pPlayer = document.querySelector(".player");
+			pPlayer.classList.add('winner');
 			break;
 	}
 
 }
 
+function updateScore() {
+	computerScore.innerText = computerWins;
+	playerScore.innerText = playerWins;
+	tieScore.innerText = ties;
+}
+
+function updateSelectionVisualization(pc, cc) {
+	pSelection.innerText = "Player Choice: " + pc;
+	cSelection.innerText = "Computer Choice: " + cc;
+}
+
+function removeTransition() {
+	this.classList.remove("winner");
+}
+
+//create array of acceptable choices
+const choiceArray = ['ROCK', 'PAPER', 'SCISSORS'];
+//initialize global variables
+let computerWins = 0;
+let playerWins = 0;
+let ties = 0;
+let playerChoice = 0;
+let computerChoice = 0;
+
 // listen for player selection via buttons
-const buttons = document.querySelectorAll('button');
+const buttons = document.querySelectorAll('.buttons>button');
 
 buttons.forEach((button) => { 
 	button.addEventListener('click', assignPlayerChoice);
@@ -66,8 +74,9 @@ let computerScore = document.querySelector('.computer');
 let playerScore = document.querySelector('.player');
 let tieScore = document.querySelector('.tie');
 
-function updateScore() {
-	computerScore.innerText = computerWins;
-	playerScore.innerText = playerWins;
-	tieScore.innerText = ties;
-}
+const ps = document.querySelectorAll("p");
+ps.forEach(p => p.addEventListener("transitionend", removeTransition));
+
+const pSelection = document.querySelector('.playerSelection');
+const cSelection = document.querySelector('.computerSelection');
+

@@ -9,24 +9,41 @@
     <script type="text/javascript" src="script.js" defer></script>
 </head>
 <body>
-    <h1>RPS SHOWDOWN</h1>
-    <div id="scoreTracker">
-        <div class="scorebox">
-            <h2>Computer Score</h2>
-            <p class="score computer">0</p>
+    <div class="container">
+        <div class="top">
+            <h1>RPS SHOWDOWN</h1>
+            <button type="button">Clear</button>
         </div>
-        <div class="scorebox">
-            <h2>Player Score</h2>
-            <p class="score player">0</p>
+        <div id="scoreTracker">
+            <div class="scorebox">
+                <h2>Computer Score</h2>
+                <p class="score computer">0</p>
+            </div>
+            <div class="scorebox">
+                <h2>Player Score</h2>
+                <p class="score player">0</p>
+            </div>
+            <div class="scorebox">
+                <h2>Ties</h2>
+                <p class="score tie">0</p>
+            </div>
         </div>
-        <div class="scorebox">
-            <h2>Ties</h2>
-            <p class="score tie">0</p>
+        <div class="buttons">
+            <button type="button">Rock</button>
+            <button type="button">Paper</button>
+            <button type="button">Scissors</button>
+        </div>
+        <div class="twoCol">
+            <div class="leftCol">
+                <h2>This Round</h2>
+                <div class="playerSelection"></div>
+                <h3>vs</h3>
+                <div class="computerSelection"></div>
+            </div>
+            <div class="rightCol">
+                <h2>Round History</h2>
+            </div>
         </div>
     </div>
-    <button type="button">Rock</button>
-    <button type="button">Paper</button>
-    <button type="button">Scissors</button>
-    
 </body>
 </html>
